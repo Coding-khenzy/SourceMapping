@@ -1,0 +1,18 @@
+{
+  "name": "SourceMapping",
+  "version": "1.0.0",
+  "description": "- [ ] New - Maps \r ### Commands\r - [ ] Say - Command\r     - [ ] Title, Message, Image, Color\r - [ ] Reaction Roles \r - [ ] Kick\r - [ ] Ban\r - [ ] Logs\r - [ ] Rando Cats\r - [ ] Rando Dogs\r - [ ] Quotes ???",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "wokcommands": "^1.2.8"
+  }
+}
