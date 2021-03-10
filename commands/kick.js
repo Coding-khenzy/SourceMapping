@@ -26,7 +26,7 @@ module.exports = {
         if (targetMember.kickable) {
             targetMember.kick()
         } else {
-            message.reply(`I cannot kick this user.\nID: ${target.id}`)
+            message.reply(`I cannot kick this user.\nID: ${target.id}`).then( (msg) => msg.delete({ timeout: 3000 }))
         }
         //log kicked user in log channel
 

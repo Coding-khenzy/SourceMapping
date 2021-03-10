@@ -2,12 +2,12 @@
 ### Events
 - [ x ] New - Maps 
 ### Commands
-- [ ] Say - Command
-    - [ ] Title, Message, Image, Color
+- [ x ] Say - Command
+    - [ x ] Title, Message, Image, Color
 - [ ] Reaction Roles 
-- [ ] Kick
-- [ ] Ban
-- [ ] Logs
+- [ x ] Kick
+- [ x ] Ban
+- [ x ] Logs
 - [ x ] Rando Cats
 - [ x ] Rando Dogs
 - [ ] Quotes ???
