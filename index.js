@@ -1,4 +1,4 @@
-const express = require('express')
+/*const express = require('express')
 const server = express();
 
 
@@ -11,14 +11,14 @@ function keepAlive() {
     console.log('Server is ready')
   })
 }
-
+*/
 
 const Discord = require('discord.js')
 const WOKCommands = require('wokcommands')
 require('dotenv').config()
 const iconUrl = 'https://cdn.discordapp.com/attachments/792514708681785344/792881246018863134/pluscheck.png'
 const fs = require('fs')
-
+const reactionRole = require('./role-claim')
 const axios = require('axios')
 const members = require('./member.js')
 // Init Discord Client
@@ -29,7 +29,7 @@ const client = new Discord.Client({
 
 client.on('ready', () => {
 
-  members(client);
+  
 
 
   const messagesPath = ''
@@ -67,7 +67,8 @@ client.on('ready', () => {
   
 
   // Calling features
-    
+  reactionRole(client);
+  members(client);
     
 })
 
@@ -127,7 +128,7 @@ async function checkMap () {
         let data = JSON.stringify(entry, null, 2)
         fs.writeFile('maps.json', data, 'utf-8', (err) => {
         if (err) throw err; 
-        channel.send('', { embed: cssEmbed })
+        channel.send('<@&819938379457101854>', { embed: cssEmbed })
         })
 
         return
@@ -138,5 +139,5 @@ async function checkMap () {
 }
 
 setInterval(checkMap, 900000)
-keepAlive()
+//keepAlive()
 client.login(process.env.TOKEN)

@@ -4,13 +4,13 @@
 ### Commands
 - [ x ] Say - Command
     - [ x ] Title, Message, Image, Color
-- [ ] Reaction Roles 
+- [ x ] Reaction Roles 
 - [ x ] Kick
 - [ x ] Ban
 - [ x ] Logs
 - [ x ] Rando Cats
 - [ x ] Rando Dogs
-- [ ] Quotes ???
+- [ x ] Quotes ???
  
 ### TODO
 - [ x ] Refine Logo
