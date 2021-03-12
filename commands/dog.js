@@ -10,7 +10,7 @@ module.exports = {
     callback: async ({ message }) => {
 
         // deleting command message itself
-        message.delete()
+        
 
         // fetch image
         let dogResponse = await axios.get('https://random.dog/woof.json ')
@@ -21,7 +21,7 @@ module.exports = {
         .setColor('#5CEB77')
         .setImage(dogImage)
         .setTimestamp()
-        .setTitle('Look a this doggo!')
+        .setTitle('Look at this doggo!')
 
         // send embed
         message.channel.send({ embed: dogEmbed })

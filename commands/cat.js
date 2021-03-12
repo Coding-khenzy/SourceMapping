@@ -18,7 +18,7 @@ module.exports = {
         .setColor('#5CEB77')
         .setImage(catImage)
         .setTimestamp()
-        .setTitle('Look a this cat!')
+        .setTitle('Look at this cat!')
 
         //send embed
         message.channel.send({ embed: catEmbed })

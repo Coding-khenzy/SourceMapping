@@ -1,3 +1,18 @@
+const express = require('express')
+const server = express();
+
+
+server.all('/', (req, res) => {
+  res.send('Host online')
+})
+
+function keepAlive() {
+  server.listen(3000, () => {
+    console.log('Server is ready')
+  })
+}
+
+
 const Discord = require('discord.js')
 const WOKCommands = require('wokcommands')
 require('dotenv').config()
@@ -5,6 +20,7 @@ const iconUrl = 'https://cdn.discordapp.com/attachments/792514708681785344/79288
 const fs = require('fs')
 
 const axios = require('axios')
+const members = require('./member.js')
 // Init Discord Client
 
 const client = new Discord.Client({
@@ -12,51 +28,51 @@ const client = new Discord.Client({
 })
 
 client.on('ready', () => {
-    const messagesPath = ''
 
-    const dbOptions = {
-        keepAlive: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindandModify: false,
-    }
+  members(client);
 
-    const disabledDefaultCommands = [
-        'command',
-        'language',
-        'requiredrole'
-    ]
 
-    new WOKCommands(client, {
-        commandsDir: 'commands',
-        featureDir: 'features',
-        messagesPath,
-        showWarns: true,
-        dbOptions,
-        disabledDefaultCommands
-    })
-    .setDefaultPrefix('!')
-    .setColor(0x99DEFF)
-    .setCategorySettings([
-        {
-          name: 'Fun',
-          emoji: '🎮'
-        },
-        {
-            name: 'Moderation',
-            emoji: '🚨'
-        }
-    ])
-    
+  const messagesPath = ''
 
-    // Calling features
+  
+  const dbOptions = {
+    keepAlive: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  }
+  
+  const disabledDefaultCommands = [
+      'command',
+      'language',
+      'requiredrole'
+  ]
+
+  new WOKCommands(client, {
+      commandsDir: 'commands',
+      featureDir: 'features',
+      messagesPath,
+      showWarns: true,
+      dbOptions,
+      disabledDefaultCommands
+  })
+  .setDefaultPrefix('!')
+  .setColor(0x99DEFF)
+  .setCategorySettings([
+      {
+        name: 'Fun',
+        emoji: '🎮'
+      }
+  ])
+  
+
+  // Calling features
     
     
 })
 
-
+console.log('Checking for newest CSS Maps is running.')
 async function checkMap () {
-    // get the guild and find our channel where we want to post
     const guild = client.guilds.cache.get('772481667432448010')
     const channel = guild.channels.cache.get('818889412028792832')
 
@@ -103,27 +119,24 @@ async function checkMap () {
 
    
     if (latestmap['Map Name'] == entry['Map Name']) {
-
         console.log('Map already posted.')
         return
-
     } else {
-
         console.log(`Posting map: ${entry['Map Name']}`)
 
         let data = JSON.stringify(entry, null, 2)
         fs.writeFile('maps.json', data, 'utf-8', (err) => {
         if (err) throw err; 
+        channel.send('', { embed: cssEmbed })
         })
 
-        // send to discord channel
-        channel.send('@everyone', { embed: cssEmbed })
         return
     }
     
     
     
 }
-setInterval(checkMap, 3400) // Interval to check for if the json data has been updated in ms
 
+setInterval(checkMap, 900000)
+keepAlive()
 client.login(process.env.TOKEN)
